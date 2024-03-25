@@ -5,18 +5,17 @@ import { redirect } from "next/navigation";
 import prisma from "../lib/db";
 import { stripe } from "../lib/stripe";
 import { unstable_noStore as noStore } from 'next/cache'
+
 export async function getData({
   email,
   id,
   firstName,
   lastName,
-  profileImage,
 }: {
   email: string;
   id: string;
   firstName: string | undefined | null;
   lastName: string | undefined | null;
-  profileImage: string | undefined | null;
 }) {
   noStore();
   const user = await prisma.user.findUnique({
@@ -54,6 +53,7 @@ export async function getData({
     });
   }
 }
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -71,7 +71,6 @@ export default async function DashboardLayout({
     id: user.id as string,
     firstName: user.given_name as string,
     lastName: user.family_name as string,
-    profileImage: user.picture as string,
   });
 
   return (
