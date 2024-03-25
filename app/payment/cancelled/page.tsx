@@ -16,7 +16,7 @@ const CancelledRoute = () => {
             <h1 className="text-lg leading-6 font-medium">Payment Failed</h1>
             <div className="mt-2">
               <p className="text-sm text-muted-foreground">
-                No worries, you won't be charged. Please try again
+                No worries, you won&apos;t be charged. Please try again
               </p>
             </div>
             <div className="mt-5 sm:mt-6 w-full">

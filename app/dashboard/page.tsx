@@ -68,8 +68,8 @@ const DashboardPage = async () => {
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
             <File className="w-10 h-10 text-primary" />
           </div>
-          <h1 className="mt-6 text-xl font-semibold">You don't have any notes created.</h1>
-          <p className="mb-8 mt-2 text-center text-sm leading-6 text-muted-foreground max-w-sm mx-auto">You currently don't have any notes. Please create some so that you can see them right here.</p>
+          <h1 className="mt-6 text-xl font-semibold">You don&apos;t have any notes created.</h1>
+          <p className="mb-8 mt-2 text-center text-sm leading-6 text-muted-foreground max-w-sm mx-auto">You currently don&apos;t have any notes. Please create some so that you can see them right here.</p>
 
          {data.Subscription?.status === 'active' ? (
            <Button asChild>
