@@ -69,8 +69,8 @@ export default async function DashboardLayout({
   await getData({
     email: user.email as string,
     id: user.id as string,
-    firstName: user.given_name as string,
-    lastName: user.family_name as string,
+    firstName: user.given_name,
+    lastName: user.family_name,
   });
 
   return (
