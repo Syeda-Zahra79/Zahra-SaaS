@@ -1,21 +1,23 @@
 import { ReactNode } from "react";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import DashboardNav from "../components/DashboardNav";
 import { redirect } from "next/navigation";
 import prisma from "../lib/db";
 import { stripe } from "../lib/stripe";
-import { unstable_noStore as noStore } from 'next/cache'
+import { unstable_noStore as noStore } from "next/cache";
+import DashboardNav from "../components/DashboardNav";
 
-export async function getData({
+async function getData({
   email,
   id,
   firstName,
   lastName,
+  profileImage,
 }: {
   email: string;
   id: string;
   firstName: string | undefined | null;
   lastName: string | undefined | null;
+  profileImage: string | undefined | null;
 }) {
   noStore();
   const user = await prisma.user.findUnique({
@@ -38,6 +40,7 @@ export async function getData({
       },
     });
   }
+
   if (!user?.stripeCustomerId) {
     const data = await stripe.customers.create({
       email: email,
@@ -61,16 +64,15 @@ export default async function DashboardLayout({
 }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-
   if (!user) {
     return redirect("/");
   }
-
   await getData({
     email: user.email as string,
+    firstName: user.given_name as string,
     id: user.id as string,
-    firstName: user.given_name,
-    lastName: user.family_name,
+    lastName: user.family_name as string,
+    profileImage: user.picture,
   });
 
   return (
