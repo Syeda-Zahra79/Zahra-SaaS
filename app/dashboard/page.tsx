@@ -83,7 +83,7 @@ const DashboardPage = async () => {
         </div>
       ) : (
         <div className="flex flex-col gap-y-4">
-          {data?.Notes.map(item => (
+          {data?.Notes.map((item: any) => (
             <Card key={item.id} className="flex items-center p-4 justify-between gap-4">
               <div>
                 <h2 className="font-semibold text-xl text-primary">{item.title}</h2>
